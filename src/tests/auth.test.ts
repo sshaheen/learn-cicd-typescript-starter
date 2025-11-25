@@ -11,5 +11,5 @@ test("Authorization header provided", () => {
   const headers: IncomingHttpHeaders = {
     authorization: "ApiKey TESTKEY",
   };
-  expect(getAPIKey(headers)).toBe("BAD");
+  expect(getAPIKey(headers)).toBe("TESTKEY");
 });
