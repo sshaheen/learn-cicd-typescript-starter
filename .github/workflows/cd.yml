@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     steps:
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -32,6 +35,9 @@ jobs:
 
       - name: Who am I?
         run: gcloud auth list
+
+      - name: Migrate db
+        run: npm run db:migrate
 
       - name: Build Docker image and publish
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-479316/notely-ar-repo/notely-app:latest .
